@@ -23,8 +23,7 @@ namespace _01.Scripts.Player
     
         private Rigidbody _rigidbody;
         private Vector2 curMovementInput;
-    
-        public 
+        
     
     
     
@@ -86,6 +85,23 @@ namespace _01.Scripts.Player
         public void OnLook(InputAction.CallbackContext context)
         {
             mouseDelta = context.ReadValue<Vector2>();
+        }
+
+        public void OnInventory(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Debug.Log($"[인벤토리 호출]");
+                
+                UIInventory inventory = GameObject.FindObjectOfType<UIInventory>(true);
+                if (inventory != null)
+                {
+                    bool isActive = inventory.gameObject.activeSelf;
+                    inventory.gameObject.SetActive(!isActive);
+                }
+          
+                
+            }
         }
     
     
